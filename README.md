@@ -1,15 +1,20 @@
 # Undergraduate-Innovation-and-Entrepreneurship-Training-Program
 
 
+
+## 源码项目地址
+
+https://github.com/SSE-DZH/Undergraduate-Innovation-and-Entrepreneurship-Training-Program
+
 ## sm-handled.txt
 
 ### 输入
 
-SMASCLL文件，SUEASCLL文件
+> SMASCLL文件，SUEASCLL文件
 
 ### 输出
 
-sm-handled.txt
+> sm-handled.txt
 
 ### 输出描述
 
@@ -23,9 +28,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
         // 指定文件路径
-        String smascllFolder = "E:\\DeskTop\\桌面\\科目\\大创\\大创\\SMASCLL";
-        String sueascllFolder = "E:\\DeskTop\\桌面\\科目\\大创\\大创\\SUEASCLL";
-        String outputFilePath = "E:\\DeskTop\\桌面\\科目\\大创\\大创\\Handled\\sm-handled.txt";
+        String smascllFolder = "E:\\SMASCLL";
+        String sueascllFolder = "E:\\SUEASCLL";
+        String outputFilePath = "E:\\sm-handled.txt";
 
         try {
             // 创建输出文件的写入器
@@ -109,15 +114,15 @@ public class Main {
 
 ### 输入
 
-SUEASCLL文件夹路径
+> SUEASCLL文件夹路径
 
 ### 输出
 
-suemax.txt
+> suemax.txt
 
 ### 输出描述
 
-在sm的18年数据中，求出所有栅格18年中最大的栅格数据并记录。
+在sm的18年数据中，求出每个栅格18年中最大的栅格数据并记录。
 
 ### 源码
 
@@ -126,7 +131,7 @@ import numpy as np
 import os
 
 # 文件夹路径
-folder_path = 'E:\\DeskTop\\桌面\\科目\\大创\\大创\\SUEASCLL'
+folder_path = 'E:\\SUEASCLL'
 
 # 获取文件夹中的所有文件
 files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
@@ -146,7 +151,7 @@ for file in files:
 result[result == 0] = 0
 
 # 保存结果
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\suemax.txt', result, fmt='%.4f')
+np.savetxt('E:\\suemax.txt', result, fmt='%.4f')
 
 ```
 
@@ -154,11 +159,11 @@ np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\suemax.txt', resul
 
 ### 输入
 
-SMASCLL文件，sm-handled.txt
+> SMASCLL文件，sm-handled.txt
 
 ### 输出
 
-temp.txt
+> temp.txt
 
 ### 输出描述
 
@@ -172,9 +177,9 @@ import numpy as np
 def read_txt_to_array(filepath):
     return np.loadtxt(filepath, dtype=float)
 
-folder_path = r"E:\DeskTop\桌面\科目\大创\大创\SMASCLL"
-handled_file_path = r"E:\DeskTop\桌面\科目\大创\大创\sm-handled.txt"
-output_file_path = r"E:\DeskTop\桌面\科目\大创\大创\temp.txt"
+folder_path = r"E:\SMASCLL"
+handled_file_path = r"E:\sm-handled.txt"
+output_file_path = r"E:\temp.txt"
 
 handled_data = read_txt_to_array(handled_file_path)
 count_matrix = np.zeros(handled_data.shape, dtype=int)
@@ -199,11 +204,11 @@ print("文件已写入:", output_file_path)
 
 ### 输入
 
-SMASCLL文件夹，sm-handled.txt
+> SMASCLL文件夹，sm-handled.txt
 
 ### 输出
 
-output_2001-2018
+> output_2001-2018
 
 ### 输出描述
 
@@ -220,9 +225,9 @@ def read_txt_to_array(filepath):
     return np.loadtxt(filepath, dtype=float)
 
 
-folder_path = r"E:\DeskTop\桌面\科目\大创\大创\SMASCLL"
-handled_file_path = r"E:\DeskTop\桌面\科目\大创\大创\sm-handled.txt"
-output_folder = r"E:\DeskTop\桌面\科目\大创\大创\output2001-2018"
+folder_path = r"E:\SMASCLL"
+handled_file_path = r"E:\sm-handled.txt"
+output_folder = r"E:\output2001-2018"
 
 handled_data = read_txt_to_array(handled_file_path)
 count_matrix = np.zeros(handled_data.shape, dtype=int)
@@ -256,15 +261,15 @@ for year in range(2001, 2019):
 
 ### 输入
 
-output_2001-2018，temp.txt
+> output_2001-2018，temp.txt，SUEASCLL
 
 ### 输出
 
-result.txt, first.txt, second.txt, third.txt
+> result.txt, first.txt, second.txt, third.txt
 
 ### 输出描述
 
-功能是筛选年份。-1指count不满足15<=count<=17。满足时，记录0代表不满足smascll的数据>=sm-handled中的数据的年份，都不在置信区间外。如果只有一年（2016）符合在置信区间外，则first.txt写2016，second和third都填0。以此类推。
+上述3个文件功能为筛选年份。-1指count不满足15<=count<=17。满足上述条件时，记录0代表不满足smascll的数据>=sm-handled中的数据的年份，都不在置信区间外。如果只有一年（2016）符合在置信区间外，则first.txt写2016，second和third都填0。以此类推。
 
 ###源码
 
@@ -274,15 +279,15 @@ import os
 from scipy import stats
 
 # 一次性读取所有文件
-data_1 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\output_2001-2018\\{year}.txt') for year in
+data_1 = {year: np.loadtxt(f'E:\\output_2001-2018\\{year}.txt') for year in
           range(2001, 2019)}
-data_2 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\SMASCLL\\{year}.txt') for year in
+data_2 = {year: np.loadtxt(f'E:SUEASCLL\\{year}.txt') for year in
           range(2001, 2019)}
-data_3 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\SUEASCLL\\{year}.txt') for year in
+data_3 = {year: np.loadtxt(f'E:SUEASCLL\\{year}.txt') for year in
           range(2001, 2019)}
 
 # 读取temp.txt文件
-temp = np.loadtxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\temp.txt')
+temp = np.loadtxt('E:\\temp.txt')
 
 # 找到值为15，16，17的值，记录该坐标
 indices = np.where(np.isin(temp, [15, 16, 17]))
@@ -349,25 +354,25 @@ for x, y in zip(*indices):
             first[x, y] = 0
 
 # 保存结果
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\result.txt', result, fmt='%d')
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\first.txt', first, fmt='%d')
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\second.txt', second, fmt='%d')
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\third.txt', third, fmt='%d')
+np.savetxt('E:\\result.txt', result, fmt='%d')
+np.savetxt('E:\\first.txt', first, fmt='%d')
+np.savetxt('E:\\second.txt', second, fmt='%d')
+np.savetxt('E:\\third.txt', third, fmt='%d')
 ```
 
 ## 18-handled
 
 ### 输入
 
-output_2001-2018，SMASCLL,SUEASCLL，temp.txt
+> output_2001-2018，SMASCLL,SUEASCLL，temp.txt
 
 ### 输出
 
-18-handled
+>18-handled
 
 ### 输出描述
 
-文件中，0是指这个位置，18年中有符合在置信区间外的，但是该年这个栅格位置不在区间外，剩下的都是-1。1则指该年这个栅格位置符合在置信区间外。
+输出18个处理文件。文件中，0是指这个位置，18年中有符合在置信区间外的，但是该年这个栅格位置不在区间外，剩下的都是-1。1则指该年这个栅格位置符合在置信区间外。
 
 ### 源码
 
@@ -377,15 +382,15 @@ import os
 from scipy import stats
 
 # 一次性读取所有文件
-data_1 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\output_2001-2018\\{year}.txt') for year in
+data_1 = {year: np.loadtxt(f'E:output_2001-2018\\{year}.txt') for year in
           range(2001, 2019)}
-data_2 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\SMASCLL\\{year}.txt') for year in
+data_2 = {year: np.loadtxt(f'E:SMASCLL\\{year}.txt') for year in
           range(2001, 2019)}
-data_3 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\SUEASCLL\\{year}.txt') for year in
+data_3 = {year: np.loadtxt(f'E:SUEASCLL\\{year}.txt') for year in
           range(2001, 2019)}
 
 # 读取temp.txt文件
-temp = np.loadtxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\temp.txt')
+temp = np.loadtxt('E:\\temp.txt')
 
 # 找到值为15，16，17的值，记录该坐标
 indices = np.where(np.isin(temp, [15, 16, 17]))
@@ -449,41 +454,43 @@ for x, y in zip(*indices):
                     years_txt[year][x, y] = 0
 
 # 保存结果
-np.savetxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\result\\result.txt', result, fmt='%d')
+np.savetxt('E:\\result.txt', result, fmt='%d')
 for year in range(2001, 2019):
-    np.savetxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\18-handled\\{year}.txt', years_txt[year], fmt='%d')
+    np.savetxt(f'E:18-handled\\{year}.txt', years_txt[year], fmt='%d')
 ```
 
-## Average_{year}
+## Average_{year}（SUE）
 
 ### 输入
 
-18-handled，gpp
+> 18-handled，gpp
 
 ### 输出
 
-Average_2001 = 116.492120
-Average_2002 = 126.203033
-Average_2003 = 100.520802
-Average_2004 = 134.133913
-Average_2005 = 109.633228
-Average_2006 = 106.426261
-Average_2007 = 113.325395
-Average_2008 = 119.451571
-Average_2009 = 110.267935
-Average_2010 = 111.861885
-Average_2011 = 113.052468
-Average_2012 = 123.134007
-Average_2013 = 152.604746
-Average_2014 = 138.281822
-Average_2015 = 164.681075
-Average_2016 = 158.549679
-Average_2017 = 167.970782
-Average_2018 = 172.226546
+> Average_2001 = 116.492120
+> Average_2002 = 126.203033
+> Average_2003 = 100.520802
+> Average_2004 = 134.133913
+> Average_2005 = 109.633228
+> Average_2006 = 106.426261
+> Average_2007 = 113.325395
+> Average_2008 = 119.451571
+> Average_2009 = 110.267935
+> Average_2010 = 111.861885
+> Average_2011 = 113.052468
+> Average_2012 = 123.134007
+> Average_2013 = 152.604746
+> Average_2014 = 138.281822
+> Average_2015 = 164.681075
+> Average_2016 = 158.549679
+> Average_2017 = 167.970782
+> Average_2018 = 172.226546
 
-### 输出描述//TODO
+### 输出描述
 
+- **研究GPP异常值（SUE）**
 
+利用2020.txt框出范围，求出18年林地、草地、耕地三个范围里，当年gpp的值与研究期gpp平均值的差值。
 
 ### 源码
 
@@ -493,8 +500,8 @@ import os
 from scipy import stats
 
 # 一次性读取所有文件
-data_1 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\18-handled\\{year}.txt') for year in range(2001, 2019)}
-data_2 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
+data_1 = {year: np.loadtxt(f'E:\\18-handled\\{year}.txt') for year in range(2001, 2019)}
+data_2 = {year: np.loadtxt(f'E:\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
 
 # 初始化结果矩阵
 result = np.full(data_1[2001].shape, -1)
@@ -533,16 +540,16 @@ for year in range(2001, 2019):
 
 ### 输入
 
-2020.txt
+> 2020.txt，sm-handled.txt
 
 ### 输出
 
-耕地的最大值：848.4284，坐标：(509, 954)
-耕地的最小值：5.351，坐标：(259, 260)
-林地的最大值：803.5867，坐标：(524, 795)
-林地的最小值：5.2599，坐标：(281, 300)
-草地的最大值：790.8245，坐标：(494, 938)
-草地的最小值：5.0457，坐标：(237, 557)
+> 耕地的最大值：848.4284，坐标：(509, 954)
+> 耕地的最小值：5.351，坐标：(259, 260)
+> 林地的最大值：803.5867，坐标：(524, 795)
+> 林地的最小值：5.2599，坐标：(281, 300)
+> 草地的最大值：790.8245，坐标：(494, 938)
+> 草地的最小值：5.0457，坐标：(237, 557)
 
 ### 输出描述
 
@@ -592,13 +599,13 @@ for land_type in ['耕地', '林地', '草地']:
 
 ### 输入
 
-2020.txt，result.txt
+> 2020.txt，result.txt
 
 ### 输出
 
-耕地的个数：13951
-林地的个数：13271
-草地的个数：10667
+> 耕地的个数：13951
+> 林地的个数：13271
+> 草地的个数：10667
 
 ### 输出描述
 
@@ -610,8 +617,8 @@ for land_type in ['耕地', '林地', '草地']:
 import numpy as np
 
 # 读取文件
-file_1 = np.loadtxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\2020.txt')
-file_2 = np.loadtxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\result.txt')
+file_1 = np.loadtxt('E:\\2020.txt')
+file_2 = np.loadtxt('E:\\result.txt')
 
 # 初始化计数器
 count_farmland = 0
@@ -640,13 +647,13 @@ print(f'草地的个数：{count_grassland}')
 
 ### 输入
 
-18-handled，gpp，2020.txt
+> 18-handled，gpp，2020.txt
 
 ### 输出
 
-耕地平均值：139.623421
-林地平均值：133.275430
-草地平均值：117.299991
+> 耕地平均值：139.623421
+> 林地平均值：133.275430
+> 草地平均值：117.299991
 
 ### 输出描述
 
@@ -660,9 +667,9 @@ import os
 from scipy import stats
 
 # 一次性读取所有文件
-data_1 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\18-handled\\{year}.txt') for year in range(2001, 2019)}
-data_2 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
-data_3 = np.loadtxt('E:\\DeskTop\\桌面\\科目\\大创\\大创\\2020.txt')
+data_1 = {year: np.loadtxt(f'E:\\18-handled\\{year}.txt') for year in range(2001, 2019)}
+data_2 = {year: np.loadtxt(f'E:\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
+data_3 = np.loadtxt('E:\\2020.txt')
 
 # 初始化结果矩阵
 result = np.full(data_1[2001].shape, -1)
@@ -702,36 +709,38 @@ for land_type, land_range in [('耕地', range(11, 19)), ('林地', range(19, 31
     print(f'{land_type}的18个Average的平均值：{np.mean(averages):.6f}')
 ```
 
-## Average_{year}
+## Average_{year}(RUE)
 
 ### 输入
 
-18-handled，gpp
+> 18-handled，gpp
 
 ### 输出
 
-Average_2001 = 74.841172
-Average_2002 = 56.030365
-Average_2003 = 84.895062
-Average_2004 = 74.06123
-Average_2005 = 61.652599
-Average_2006 = 49.343245
-Average_2007 = 48.479976
-Average_2008 = 45.477432
-Average_2009 = 45.788013
-Average_2010 = 73.119933
-Average_2011 = 40.891838
-Average_2012 = 53.159269
-Average_2013 = 65.030574
-Average_2014 = 55.43753
-Average_2015 = 64.299381
-Average_2016 = 68.854514
-Average_2017 = 83.948298
-Average_2018 = 82.755086
+> Average_2001 = 74.841172
+> Average_2002 = 56.030365
+> Average_2003 = 84.895062
+> Average_2004 = 74.06123
+> Average_2005 = 61.652599
+> Average_2006 = 49.343245
+> Average_2007 = 48.479976
+> Average_2008 = 45.477432
+> Average_2009 = 45.788013
+> Average_2010 = 73.119933
+> Average_2011 = 40.891838
+> Average_2012 = 53.159269
+> Average_2013 = 65.030574
+> Average_2014 = 55.43753
+> Average_2015 = 64.299381
+> Average_2016 = 68.854514
+> Average_2017 = 83.948298
+> Average_2018 = 82.755086
 
-### 输出描述//TODO
+### 输出描述
 
+- **研究GPP异常值（RUE）**
 
+利用2020.txt框出范围，求出18年林地、草地、耕地三个范围里，当年gpp的值与研究期gpp平均值的差值。
 
 ###源码
 
@@ -739,8 +748,8 @@ Average_2018 = 82.755086
 import numpy as np
 
 # 一次性读取所有文件
-data_1 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\new\\18-handled\\{year}.txt') for year in range(2001, 2019)}
-data_2 = {year: np.loadtxt(f'E:\\DeskTop\\桌面\\科目\\大创\\大创\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
+data_1 = {year: np.loadtxt(f'E:\\18-handled\\{year}.txt') for year in range(2001, 2019)}
+data_2 = {year: np.loadtxt(f'E:\\gpp\\gpp{year}.txt') for year in range(2001, 2019)}
 
 # 遍历所有满足条件的坐标
 for year in range(2001, 2019):
